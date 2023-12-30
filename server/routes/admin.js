@@ -34,7 +34,7 @@ const authMiddleware = (req, res, next ) => {
  * Admin - Login Page
  */
 
-router.get('/admin', async (req, res) => {
+router.get('/views/admin', async (req, res) => {
     try {
     const locals = {
         title: "Admin",
@@ -53,7 +53,7 @@ router.get('/admin', async (req, res) => {
  * Admin - Check Login
  */
 
-router.post('/admin', async (req, res) => {
+router.post('/views/admin', async (req, res) => {
     try {
 
     const {username, password } = req.body;
@@ -95,7 +95,7 @@ router.get('/dashboard',authMiddleware, async (req, res) => {
             description: 'Simple Blog created with NodeJs and MongoDB.'
         }
         const data = await Post.find();
-        res.render('admin/dashboard', {
+        res.render('views/admin/dashboard', {
             locals,
             data,
             layout: adminLayout
@@ -168,7 +168,7 @@ router.get('/edit-post/:id', authMiddleware, async (req, res) => {
   
       const data = await Post.findOne({ _id: req.params.id });
   
-      res.render('admin/edit-post', {
+      res.render('views/admin/edit-post', {
         locals,
         data,
         layout: adminLayout
